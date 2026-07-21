@@ -15,7 +15,7 @@ const navLinkClasses = ({ isActive }) =>
 /**
  * Encabezado global: marca, indicadores de red en vivo y navegación entre
  * vistas. `blockchainHeight` se recibe como prop para reflejar el bloque
- * actual reportado por el dashboard/repositorio de votación.
+ * actual reportado por la red.
  */
 export default function Header() {
   const { isAuthenticated } = useAuth();
@@ -40,7 +40,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div
           className="flex items-center space-x-3 cursor-pointer"
-          onClick={() => navigate('/dashboard')}
+          onClick={() => navigate(isAuthenticated ? '/voting' : '/login')}
         >
           <div className="bg-blue-600 p-2.5 rounded-xl shadow-md shadow-blue-500/10 flex items-center justify-center">
             <ShieldCheck className="h-5 w-5 text-white" />
@@ -84,9 +84,6 @@ export default function Header() {
           </NavLink>
           <NavLink to="/voting" className={navLinkClasses} onClick={handleVotingNavClick}>
             Votar
-          </NavLink>
-          <NavLink to="/dashboard" className={navLinkClasses}>
-            Escrutinio
           </NavLink>
         </div>
       </div>

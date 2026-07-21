@@ -53,16 +53,16 @@ export default function VotingView() {
     if (!selectedCandidate) return;
     setBroadcasting(true);
     try {
-      await votingRepository.castVote(selectedCandidate.id);
+      const encryptedData = btoa(currentUser.id);
+      await votingRepository.castVote(currentUser.id, selectedCandidate.id, encryptedData);
       bumpBlockchainHeight();
       markAsVoted();
       showToast(
         'Voto Registrado',
-        'Su sufragio criptográfico ha sido agregado al ledger nacional de forma segura.',
+        'Su sufragio ha sido agregado al ledger seguro.',
         'success'
       );
       closeSigningModal();
-      setTimeout(() => navigate('/dashboard'), 700);
     } catch (err) {
       showToast('Error al Transmitir', err.message, 'danger');
     } finally {

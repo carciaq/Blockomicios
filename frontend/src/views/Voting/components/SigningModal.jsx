@@ -1,14 +1,12 @@
 import { CheckCircle2, Circle, Cpu, Loader } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { generateMockHash } from '../../../shared/utils/formatters';
 
 const STEP_LABELS = [
-  'Generación de Hash SHA-256',
-  'Firma criptográfica asimétrica',
-  'Minado y consenso en bloque nacional',
+  'Generando voto seguro',
+  'Firmando en cadena',
+  'Confirmando transacción',
 ];
 
-// pending -> processing -> done
 function StepRow({ label, status }) {
   const icon =
     status === 'done' ? (
@@ -53,7 +51,7 @@ export default function SigningModal({ open, candidate, onClose, onConfirm, broa
   useEffect(() => {
     if (!open) return undefined;
 
-    setDisplayHash(generateMockHash(32) + '... (Consenso Activo)');
+    setDisplayHash('Generando huella de voto...');
     setStepStatuses(['processing', 'pending', 'pending']);
 
     const t1 = setTimeout(() => {

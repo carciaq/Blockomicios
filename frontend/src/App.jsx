@@ -5,7 +5,6 @@ import Footer from './shared/components/Footer';
 import Header from './shared/components/Header';
 import ToastContainer from './shared/components/ToastContainer';
 import { ToastProvider } from './shared/hooks/useToast';
-import DashboardView from './views/Dashboard/DashboardView';
 import LoginView from './views/Login/LoginView';
 import VotingView from './views/Voting/VotingView';
 
@@ -28,7 +27,6 @@ export default function App() {
                   <Route path="/" element={<Navigate to="/login" replace />} />
                   <Route path="/login" element={<LoginView />} />
                   <Route path="/voting" element={<VotingView />} />
-                  <Route path="/dashboard" element={<DashboardView />} />
                   <Route path="*" element={<Navigate to="/login" replace />} />
                 </Routes>
               </div>

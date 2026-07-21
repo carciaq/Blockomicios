@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  backend:
+    build: .
+    command: sh -c "cd backend && npm run dev"
+    working_dir: /app/backend
+    volumes:
+      - ./backend:/app/backend
+      - /app/backend/node_modules
+    ports:
+      - '4000:4000'
+    environment:
+      - PORT=4000
+
+  frontend:
+    build: .
+    command: sh -c "cd frontend && npm run dev -- --host 0.0.0.0"
+    working_dir: /app/frontend
+    volumes:
+      - ./frontend:/app/frontend
+      - /app/frontend/node_modules
+    ports:
+      - '5173:5173'
+    environment:
+      - VITE_API_URL=http://host.docker.internal:4000

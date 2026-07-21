@@ -1,18 +1,14 @@
 import { createContext, useContext, useMemo, useState } from 'react';
-import { MOCK_NETWORK_INFO } from '../shared/utils/mockData';
 
 const NetworkContext = createContext(null);
 
 /**
  * Contexto con el estado "global" de la red blockchain (altura de bloque,
- * nodos activos) que se muestra en el header y se actualiza tanto al votar
- * como al recibir nuevas transacciones en el dashboard.
+ * nodos activos) que se muestra en el header y se actualiza al votar.
  */
 export function NetworkProvider({ children }) {
-  const [blockchainHeight, setBlockchainHeight] = useState(
-    MOCK_NETWORK_INFO.blockchainHeight
-  );
-  const [activeNetworkNodes] = useState(MOCK_NETWORK_INFO.activeNetworkNodes);
+  const [blockchainHeight, setBlockchainHeight] = useState(8);
+  const [activeNetworkNodes] = useState(4);
 
   const bumpBlockchainHeight = () => setBlockchainHeight((prev) => prev + 1);
 

@@ -15,10 +15,10 @@ export default function VotedBlocker() {
       <div className="mt-4 flex justify-center">
         <button
           type="button"
-          onClick={() => navigate('/dashboard')}
+          onClick={() => navigate('/voting')}
           className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-2 px-4 rounded-lg flex items-center gap-1.5 transition"
         >
-          Verificar Resultados <BarChart3 className="h-3.5 w-3.5" />
+          Volver a Votar <BarChart3 className="h-3.5 w-3.5" />
         </button>
       </div>
     </div>
