@@ -1,14 +1,11 @@
 const express = require('express');
 const router = express.Router();
-
-const CANDIDATES = [
-  { id: 1, name: 'Alice Perez', party: 'Partido Verde' },
-  { id: 2, name: 'Carlos Ruiz', party: 'Movimiento Ciudadano' },
-  { id: 3, name: 'Mariana Soto', party: 'Coalición Progresista' },
-];
+const { getCandidatesByEvent } = require('../services/election');
 
 router.get('/', (req, res) => {
-  res.json(CANDIDATES);
+  const eventId = req.query.eventId ? Number(req.query.eventId) : null;
+  const candidates = eventId ? getCandidatesByEvent(eventId) : [];
+  res.json(candidates);
 });
 
 module.exports = router;

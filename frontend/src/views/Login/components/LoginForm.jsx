@@ -1,6 +1,6 @@
 import { ArrowRight, User } from 'lucide-react';
 
-export default function LoginForm({ voterId, onVoterIdChange, onSubmit, submitting }) {
+export default function LoginForm({ voterId, onVoterIdChange, onSubmit, submitting, error }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!voterId.trim()) return;
@@ -26,18 +26,23 @@ export default function LoginForm({ voterId, onVoterIdChange, onSubmit, submitti
             required
             value={voterId}
             onChange={(e) => onVoterIdChange(e.target.value)}
-            placeholder="Ejem: VOTE-2026-X9"
+            placeholder="Ejem: 12345678"
             className="block w-full pl-9 pr-4 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm transition duration-150"
           />
         </div>
-      </div>
-
-      <div className="flex items-start space-x-2.5 text-xs text-slate-500 bg-slate-50 p-3 rounded-lg border border-slate-200">
-        <span className="text-blue-500 flex-shrink-0 mt-0.5">✓</span>
-        <p className="leading-relaxed">
-          Use su número de elector único. El sistema conserva la prueba de voto y evita votaciones
-          múltiples en la cadena de bloques.
-        </p>
+      {error ? (
+        <div className="text-sm text-rose-600 bg-rose-50 border border-rose-100 rounded-lg p-3">
+          {error}
+        </div>
+      ) : (
+        <div className="flex items-start space-x-2.5 text-xs text-slate-500 bg-slate-50 p-3 rounded-lg border border-slate-200">
+          <span className="text-blue-500 flex-shrink-0 mt-0.5">✓</span>
+          <p className="leading-relaxed">
+            Use su número de elector único. El sistema conserva la prueba de voto y evita votaciones
+            múltiples en la cadena de bloques.
+          </p>
+        </div>
+      )}
       </div>
 
       <button

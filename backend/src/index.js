@@ -4,6 +4,7 @@ const chain = require('./services/chain');
 const authRoutes = require('./routes/auth');
 const voteRoutes = require('./routes/vote');
 const candidatesRoutes = require('./routes/candidates');
+const eventsRoutes = require('./routes/events');
 const resultsRoutes = require('./routes/results');
 
 const app = express();
@@ -12,10 +13,11 @@ app.use(express.json());
 
 app.use('/auth', authRoutes);
 app.use('/vote', voteRoutes);
+app.use('/events', eventsRoutes);
 app.use('/candidates', candidatesRoutes);
 app.use('/results', resultsRoutes);
 
-app.get('/', (req, res) => res.json({ ok: true, deployed: !!chain.contractAddress }));
+app.get('/', (req, res) => res.json({ ok: true, deployed: !!chain.getContractAddress() }));
 
 const PORT = process.env.PORT || 4000;
 chain

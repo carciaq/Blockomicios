@@ -9,13 +9,27 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
 
-  const login = (userSession) => setCurrentUser(userSession);
+  const login = (userSession) =>
+    setCurrentUser((prev) => ({
+      ...userSession,
+      votedEvents: prev?.votedEvents || userSession?.votedEvents || {},
+    }));
   const logout = () => {
     setCurrentUser(null);
     sessionStorage.removeItem('blockvote_session_token');
   };
-  const markAsVoted = () =>
-    setCurrentUser((prev) => (prev ? { ...prev, voted: true } : prev));
+  const markAsVoted = (eventId) =>
+    setCurrentUser((prev) =>
+      prev
+        ? {
+            ...prev,
+            votedEvents: {
+              ...(prev.votedEvents || {}),
+              [eventId]: true,
+            },
+          }
+        : prev
+    );
 
   const value = useMemo(
     () => ({ currentUser, login, logout, markAsVoted, isAuthenticated: !!currentUser }),
