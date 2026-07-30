@@ -47,7 +47,7 @@ export default function Header() {
           </div>
           <div>
             <span className="font-extrabold text-lg tracking-tight text-slate-900">
-              BlockVote <span className="text-blue-600 font-normal">Nacional</span>
+              Blocko <span className="text-blue-600 font-normal">micios</span>
             </span>
             <span className="block text-[9px] text-slate-500 font-mono tracking-wider uppercase">
               Protocolo Electoral Descentralizado
